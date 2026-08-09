@@ -7,7 +7,7 @@ terminal‑friendly spinner.
 ## Features
 
 - Pure Python 3 (standard library only).
-- Single‑file library (`spin.py`).
+- Single‑module library (`src/spin/__init__.py`).
 - Use as a context manager **or** as a decorator.
 - Optional description text shown next to the spinner.
 - Configurable frame rate (`timeout` seconds per frame).
@@ -16,17 +16,25 @@ terminal‑friendly spinner.
 
 ## Installation
 
-Copy `spin.py` into your project or install it locally:
+Install from GitHub with [uv](https://docs.astral.sh/uv/):
 
 ```sh
-# Copy into your source tree
-cp spin.py /path/to/your/project/
-
-# Or use the Makefile (creates ~/.local/lib/python/spin.py)
-make install
+uv add git+ssh://git@github.com/wakodiwe/spin.py
 ```
 
-The file has no external dependencies.
+The `spin` module is now importable in that project:
+
+```python
+from spin import Loader
+```
+
+No external dependencies (standard library only).
+
+### Local development
+
+Clone the repo, then `make devinstall` to symlink the source into
+`~/.local/lib/py/spin.py` for ad‑hoc use, or `uv sync` inside the repo to
+get an editable install in a local venv.
 
 ## Usage
 
@@ -99,14 +107,14 @@ decorated_job()
 
 ## Test
 
-A quick syntax check can be performed with:
+A quick syntax check:
 
 ```sh
-make test          # runs python -m py_compile spin.py
+make test          # runs python -m py_compile src/spin/__init__.py
 ```
 
 or manually:
 
 ```sh
-python -m py_compile spin.py
+python -m py_compile src/spin/__init__.py
 ```
